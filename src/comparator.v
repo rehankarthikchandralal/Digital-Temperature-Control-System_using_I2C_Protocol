@@ -1,4 +1,5 @@
 `timescale 10ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -19,7 +20,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module comparator #(parameter BIT_WIDTH=4)(
     input wire [BIT_WIDTH-1:0] input_1,
     input wire [BIT_WIDTH-1:0] input_2,
@@ -28,18 +28,22 @@ module comparator #(parameter BIT_WIDTH=4)(
     output wire output_lower
     );
 
+always @(*) begin
+    if (input_1 > input_2) begin
+        output_greater = 1;
+        output_equal = 0;
+        output_less = 0;
+    end
+    else if (input_1 < input_2) begin
+        output_greater = 0;
+        output_equal = 0;
+        output_less = 1;
+    end
+    else begin
+        output_greater = 0;
+        output_equal = 1;
+        output_less = 0;
+    end
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
 endmodule
