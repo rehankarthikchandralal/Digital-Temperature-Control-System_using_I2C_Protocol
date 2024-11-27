@@ -1,5 +1,4 @@
 `timescale 10ns / 1ps
-
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -28,22 +27,9 @@ module comparator #(parameter BIT_WIDTH=4)(
     output wire output_lower
     );
 
-always @(*) begin
-    if (input_1 > input_2) begin
-        output_greater = 1;
-        output_equal = 0;
-        output_less = 0;
-    end
-    else if (input_1 < input_2) begin
-        output_greater = 0;
-        output_equal = 0;
-        output_less = 1;
-    end
-    else begin
-        output_greater = 0;
-        output_equal = 1;
-        output_less = 0;
-    end
-end
+// Use continuous assignments directly for the outputs
+assign output_greater = (input_1 > input_2);
+assign output_equal = (input_1 == input_2);
+assign output_lower = (input_1 < input_2);
 
 endmodule
